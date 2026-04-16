@@ -76,27 +76,27 @@ def _build_input(params, encoder, scaler):
 
 PREDEFINED_SCENARIOS = {
     'best_case': {
-        'name': '🌟 Best Case (Optimal Conditions)',
+        'name': 'Best Case (Optimal Conditions)',
         'changes': {'Rainfall_mm': '+15%', 'Irrigation_mm': '+20%', 'N_Fertilizer': '+10%'}
     },
     'worst_case': {
-        'name': '⚠️ Worst Case (Drought + Low Fertilizer)',
+        'name': 'Worst Case (Drought + Low Fertilizer)',
         'changes': {'Rainfall_mm': '-40%', 'Irrigation_mm': '-30%', 'N_Fertilizer': '-25%'}
     },
     'drought': {
-        'name': '🔥 Drought Scenario',
+        'name': 'Drought Scenario',
         'changes': {'Rainfall_mm': '-50%', 'Humidity_pct': '-20%'}
     },
     'flood': {
-        'name': '🌊 Flood Scenario',
+        'name': 'Flood Scenario',
         'changes': {'Rainfall_mm': '+80%', 'Soil_Moisture_pct': '+40%'}
     },
     'organic': {
-        'name': '🌿 Organic Farming (Low Fertilizer)',
+        'name': 'Organic Farming (Low Fertilizer)',
         'changes': {'N_Fertilizer': '-50%', 'P_Fertilizer': '-40%', 'K_Fertilizer': '-40%'}
     },
     'intensive': {
-        'name': '⚡ Intensive Farming (High Input)',
+        'name': 'Intensive Farming (High Input)',
         'changes': {'Irrigation_mm': '+50%', 'N_Fertilizer': '+40%', 'P_Fertilizer': '+30%', 'K_Fertilizer': '+30%'}
     },
 }

@@ -37,11 +37,11 @@ def recommend_fertilizer(model, encoder, scaler, base_params, n_range=(20, 250, 
 
     diff = recommendation['optimal_N'] - recommendation['current_N']
     if diff > 10:
-        recommendation['advice'] = f"📈 แนะนำให้เพิ่มปุ๋ย N จาก {recommendation['current_N']:.0f} → {recommendation['optimal_N']} kg/ha (+{diff:.0f})"
+        recommendation['advice'] = f"Recommend increasing N fertilizer from {recommendation['current_N']:.0f} to {recommendation['optimal_N']} kg/ha (+{diff:.0f})"
     elif diff < -10:
-        recommendation['advice'] = f"📉 แนะนำให้ลดปุ๋ย N จาก {recommendation['current_N']:.0f} → {recommendation['optimal_N']} kg/ha ({diff:.0f})"
+        recommendation['advice'] = f"Recommend decreasing N fertilizer from {recommendation['current_N']:.0f} to {recommendation['optimal_N']} kg/ha ({diff:.0f})"
     else:
-        recommendation['advice'] = f"✅ ปริมาณปุ๋ย N ปัจจุบัน ({recommendation['current_N']:.0f}) อยู่ในระดับที่เหมาะสมแล้ว"
+        recommendation['advice'] = f"Current N level ({recommendation['current_N']:.0f}) is already near optimal"
 
     return recommendation
 
@@ -73,7 +73,7 @@ def recommend_crop(model, encoder, scaler, base_params, crops=None):
         'recommended_crop': best_crop,
         'expected_yield': best_yield,
         'comparison': df,
-        'advice': f"🌾 ในสภาพแวดล้อมนี้ แนะนำให้ปลูก {best_crop} (ผลผลิตคาดว่า {best_yield:,.0f} kg/ha)"
+        'advice': f"In these conditions, {best_crop} is recommended (expected yield: {best_yield:,.0f} kg/ha)"
     }
 
 
@@ -96,14 +96,14 @@ def assess_risk(model, encoder, scaler, base_params):
     volatility = (yield_range / (baseline_yield + 1)) * 100
 
     if volatility > 60:
-        risk_level = '🔴 สูงมาก (High Risk)'
-        recommendation = 'ควรเพิ่มระบบชลประทานและกระจายชนิดพืชเพื่อลดความเสี่ยง'
+        risk_level = 'HIGH RISK'
+        recommendation = 'Consider adding irrigation systems and diversifying crop types to reduce risk.'
     elif volatility > 35:
-        risk_level = '🟡 ปานกลาง (Medium Risk)'
-        recommendation = 'ควรติดตามสภาพอากาศอย่างใกล้ชิดและเตรียมแผนสำรอง'
+        risk_level = 'MEDIUM RISK'
+        recommendation = 'Monitor weather conditions closely and prepare contingency plans.'
     else:
-        risk_level = '🟢 ต่ำ (Low Risk)'
-        recommendation = 'สถานการณ์ค่อนข้างมั่นคง สามารถดำเนินการได้ตามปกติ'
+        risk_level = 'LOW RISK'
+        recommendation = 'Conditions are relatively stable. Proceed with normal operations.'
 
     return {
         'risk_level': risk_level,
